@@ -18,7 +18,7 @@ Installing as a local dev-dependency gives you more flexibility:
 npm install -D mjml-utils
 ```
 
-If you install __mjml-utils__ locally, you'll probably want to configure it to run via your `package.json` scripts. This method is encouraged, and an example of local usage via `package.json` scripts is provided below.
+If you install __mjml-utils__ locally, you'll probably want to configure it to run via your `package.json` scripts. This method is encouraged, and an example of local usage via `package.json` scripts is provided [below](#npm-script-usage).
 
 ## Global Usage
 
