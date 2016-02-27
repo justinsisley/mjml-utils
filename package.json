@@ -1,17 +1,19 @@
 {
   "name": "mjml-utils",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "author": "Justin Sisley <justin@vera.com>",
   "description": "The utility belt for MJML developers",
   "repository": "https://github.com/justinsisley/mjml-utils",
   "license": "MIT",
+  "main": "./lib/mjml-utils.js",
   "bin": {
-    "mjml-utils": "./bin/main.js",
-    "mju": "./bin/main.js"
+    "mjml-utils": "./lib/mjml-utils",
+    "mju": "./lib/mjml-utils"
   },
-  "main": "index.js",
   "scripts": {
-    "build": "./node_modules/babel-cli/bin/babel.js ./lib --out-dir ./bin; echo '#!/usr/bin/env node' | cat - ./bin/main.js > ./bin/temp && mv ./bin/temp ./bin/main.js"
+    "compile": "babel ./src --out-dir ./lib --source-maps && mv lib/mjml-utils.js lib/mjml-utils",
+    "prepublish": "npm run compile",
+    "lint": "eslint src"
   },
   "dependencies": {
     "inquirer": "^0.12.0",

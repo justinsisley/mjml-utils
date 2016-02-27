@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { argv } from 'yargs';
 import builder from './builder';
 import watcher from './watcher';

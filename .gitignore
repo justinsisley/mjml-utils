@@ -11,4 +11,4 @@ tmp
 ehthumbs.db
 Thumbs.db
 node_modules
-examples/build
+lib
