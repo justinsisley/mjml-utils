@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import mjml from 'mjml';
+import {mjml2html} from 'mjml';
 
 function getTemplateFilename(filePath) {
   const split = filePath.split('/');
@@ -21,7 +21,7 @@ export const build = (filePath, outputDir) => {
 
   const startTime = Date.now();
   const data = fs.readFileSync(`${filePath}`, 'utf8');
-  const rendered = mjml.mjml2html(data);
+  const rendered = mjml2html(data);
   const filename = getTemplateFilename(filePath).replace('.mjml', '.html');
 
   fs.writeFileSync(`${outputPath}/${filename}`, rendered);
