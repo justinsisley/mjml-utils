@@ -18,7 +18,7 @@ function onWatching(err) {
 }
 
 function onChange(filePath, outputDir) {
-  build(filePath, outputDir);
+  build(filePath.replace(/\\/g,'/'), outputDir);
 }
 
 export default (inputDir, outputDir) => {
