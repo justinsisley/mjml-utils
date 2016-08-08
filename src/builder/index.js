@@ -1,9 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import {mjml2html} from 'mjml';
+const fs = require('fs');
+const path = require('path');
+const mjml2html = require('mjml').mjml2html;
+
+const builder = {};
 
 function getTemplateFilename(filePath) {
   const split = filePath.split('/');
+
   return split[split.length - 1];
 }
 
@@ -15,7 +18,7 @@ function mkdir(directory) {
   }
 }
 
-export const build = (filePath, outputDir) => {
+builder.build = (filePath, outputDir) => {
   const outputPath = path.join(process.cwd(), outputDir);
   mkdir(outputPath);
 
@@ -31,15 +34,20 @@ export const build = (filePath, outputDir) => {
   console.log(`Rendered ${filename} in ${totalTime}ms`); // eslint-disable-line
 };
 
-export default (inputDir, outputDir) => {
+builder.buildAll = (inputDir, outputDir) => {
   const sourcePath = path.join(process.cwd(), inputDir);
   const templates = fs.readdirSync(sourcePath);
-  if (!templates.length) {throw new Error('No templates to build');}
+
+  if (!templates.length) {
+    throw new Error('No templates to build');
+  }
 
   const outputPath = path.join(process.cwd(), outputDir);
   mkdir(outputPath);
 
   templates.forEach(template => {
-    build(`${sourcePath}/${template}`, outputDir);
+    builder.build(`${sourcePath}/${template}`, outputDir);
   });
 };
+
+module.exports = builder;

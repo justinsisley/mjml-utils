@@ -47,7 +47,7 @@ Like the `--build` command, the `--watch` command requires both input (`-i`) and
 The `mju --send` command sends compiled MJML templates as HTML emails to a recipient of your choosing using your Gmail credentials.
 
 ```bash
-mju --send -i -o ./build
+mju --send -o ./build
 ```
 
 The `--send` command will prompt you to provide all of the information needed to send test emails.

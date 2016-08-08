@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-import { argv } from 'yargs';
-import builder from './builder';
-import watcher from './watcher';
-import sender from './sender';
+const argv = require('yargs').argv;
+const buildAll = require('./builder').buildAll;
+const watcher = require('./watcher');
+const sender = require('./sender');
 
-const { build, watch, send, i, o } = argv;
-
-if (build) {builder(i, o);}
-if (watch) {watcher(i, o);}
-if (send) {sender(o);}
+if (argv.build) { buildAll(argv.i, argv.o); }
+if (argv.watch) { watcher(argv.i, argv.o); }
+if (argv.send) { sender(argv.o); }

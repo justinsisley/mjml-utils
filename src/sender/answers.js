@@ -1,14 +1,14 @@
-import path from 'path';
-import nodemailer from 'nodemailer';
-import promptToSend from './promptToSend';
+const path = require('path');
+const nodemailer = require('nodemailer');
+const promptToSend = require('./promptToSend');
 
-export default (answers, templateDir) => {
-  const { from, password, to, template } = answers;
-
+module.exports = (answers, templateDir) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    auth: { user: from, pass: password },
+    auth: { user: answers.from, pass: answers.password },
   });
 
-  promptToSend(transporter, from, to, path.join(templateDir, template));
+  const template = path.join(templateDir, answers.template);
+
+  promptToSend(transporter, answers.from, answers.to, template);
 };

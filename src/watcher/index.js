@@ -1,6 +1,6 @@
-import path from 'path';
-import watchr from 'watchr';
-import { build } from '../builder';
+const path = require('path');
+const watchr = require('watchr');
+const build = require('../builder').build;
 
 const startedMessage = '\nTemplate watcher started\n';
 const errorMessage = 'Something went wrong';
@@ -18,10 +18,10 @@ function onWatching(err) {
 }
 
 function onChange(filePath, outputDir) {
-  build(filePath.replace(/\\/g,'/'), outputDir);
+  build(filePath.replace(/\\/g, '/'), outputDir);
 }
 
-export default (inputDir, outputDir) => {
+module.exports = (inputDir, outputDir) => {
   const sourceDir = path.join(process.cwd(), inputDir);
 
   watchr.watch({

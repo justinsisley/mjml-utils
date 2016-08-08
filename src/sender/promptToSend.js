@@ -1,5 +1,5 @@
-import inquirer from 'inquirer';
-import send from './send';
+const inquirer = require('inquirer');
+const send = require('./send');
 
 const promptToSend = (transporter, from, to, template) => {
   inquirer.prompt([{
@@ -7,7 +7,8 @@ const promptToSend = (transporter, from, to, template) => {
     name: 'send',
     default: true,
     message: 'Send test email',
-  }], sendResponse => {
+  }])
+  .then(sendResponse => {
     if (sendResponse.send) {
       send(template, from, to, transporter, () => {
         promptToSend(transporter, from, to, template);
@@ -16,4 +17,4 @@ const promptToSend = (transporter, from, to, template) => {
   });
 };
 
-export default promptToSend;
+module.exports = promptToSend;

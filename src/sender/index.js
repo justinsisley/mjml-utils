@@ -1,9 +1,8 @@
-import inquirer from 'inquirer';
-import questions from './questions';
-import handleAnswers from './answers';
+const inquirer = require('inquirer');
+const questions = require('./questions');
+const handleAnswers = require('./answers');
 
-export default (templateDir) => {
-  inquirer.prompt(questions(templateDir), answers => {
-    handleAnswers(answers, templateDir);
-  });
+module.exports = (templateDir) => {
+  inquirer.prompt(questions(templateDir))
+  .then(answers => handleAnswers(answers, templateDir));
 };
