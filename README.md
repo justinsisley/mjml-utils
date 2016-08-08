@@ -84,6 +84,39 @@ npm run email-send
 
 This is the preferred way of using __mjml-utils__, since you can configure it on a per-project basis, and you won't have to remember any command line arguments other than the simple NPM script alias.
 
+## Module Usage
+
+__mjml-utils__ also has a built in helper method called `inject`. An example of its usage is below:
+
+```javascript
+const mjmlUtils = require('mjml-utils');
+const pathToHtmlEmailTemplate = path.join(__dirname, '../emails/welcome.html');
+
+mjmlUtils.inject(pathToHtmlEmailTemplate, {
+  name: 'bob',
+  profileURL: 'https://app.com/bob',
+})
+.then(finalTemplate => {
+  // finalTemplate is an HTML string containing the template with all occurrences
+  // of `{name}` replaced with "bob", and all occurrences of `{profileURL}`
+  // replaced with "https://app.com/bob".
+});
+```
+
+The above JavaScript assumes a template called `welcome.html` exists at the specified path, and that it's contents are something like the following example:
+
+```html
+<html>
+  <body>
+    <h1>Welcome {name}</h1>
+
+    <p><a href="{profileURL}">Click here</a> to view your profile.</p>
+  </body>
+</html>
+```
+
+This means your raw MJML template should contain the necessary template strings that you intend to replace with dynamic values.
+
 ## Versioning
 
 To keep better organization of releases this project follows the [Semantic Versioning 2.0.0](http://semver.org/) guidelines.
