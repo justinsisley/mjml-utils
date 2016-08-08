@@ -1,14 +1,14 @@
 {
   "name": "mjml-utils",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Justin Sisley <justin@vera.com>",
   "description": "The utility belt for MJML developers",
   "repository": "https://github.com/justinsisley/mjml-utils",
   "license": "MIT",
   "main": "./src/mjml-utils.js",
   "bin": {
-    "mjml-utils": "./src/mjml-utils",
-    "mju": "./src/mjml-utils"
+    "mjml-utils": "./src/mjml-utils.js",
+    "mju": "./src/mjml-utils.js"
   },
   "scripts": {
     "lint": "eslint src"
