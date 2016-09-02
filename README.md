@@ -31,10 +31,10 @@ mju --build -i ./templates -o ./build
 ```
 
 The `--build` command requires input (`-i`) and output (`-o`) arguments. `-i` is the directory in which your raw MJML templates are located, and `-o` is the directory you would like the compiled HTML files written to.
-With the optional extension (`-e`) argument you specify the output file extension (default: `.html`) to your liking.
+With the optional extension (`-e`) argument you can specify the output file extension (default: `.html`) to your liking.
 
 ```bash
-mju --build -i ./templates -o ./build -e '.handlebars'
+mju --build -i ./templates -o ./build -e .handlebars
 ```
 
 #### --watch
