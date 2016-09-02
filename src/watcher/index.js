@@ -17,11 +17,11 @@ function onWatching(err) {
   }
 }
 
-function onChange(filePath, outputDir) {
-  build(filePath.replace(/\\/g, '/'), outputDir);
+function onChange(filePath, outputDir, extension) {
+  build(filePath.replace(/\\/g, '/'), outputDir, extension);
 }
 
-module.exports = (inputDir, outputDir) => {
+module.exports = (inputDir, outputDir, extension) => {
   const sourceDir = path.join(process.cwd(), inputDir);
 
   watchr.watch({
@@ -30,7 +30,7 @@ module.exports = (inputDir, outputDir) => {
       error: onError,
       watching: onWatching,
       change(type, filePath) {
-        onChange(filePath, outputDir);
+        onChange(filePath, outputDir, extension);
       },
     },
   });

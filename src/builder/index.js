@@ -18,14 +18,14 @@ function mkdir(directory) {
   }
 }
 
-builder.build = (filePath, outputDir) => {
+builder.build = (filePath, outputDir, extension) => {
   const outputPath = path.join(process.cwd(), outputDir);
   mkdir(outputPath);
 
   const startTime = Date.now();
   const data = fs.readFileSync(`${filePath}`, 'utf8');
   const rendered = mjml2html(data);
-  const filename = getTemplateFilename(filePath).replace('.mjml', '.html');
+  const filename = getTemplateFilename(filePath).replace('.mjml', extension);
 
   fs.writeFileSync(`${outputPath}/${filename}`, rendered);
 
@@ -34,7 +34,7 @@ builder.build = (filePath, outputDir) => {
   console.log(`Rendered ${filename} in ${totalTime}ms`); // eslint-disable-line
 };
 
-builder.buildAll = (inputDir, outputDir) => {
+builder.buildAll = (inputDir, outputDir, extension) => {
   const sourcePath = path.join(process.cwd(), inputDir);
   const templates = fs.readdirSync(sourcePath);
 
@@ -46,7 +46,7 @@ builder.buildAll = (inputDir, outputDir) => {
   mkdir(outputPath);
 
   templates.forEach(template => {
-    builder.build(`${sourcePath}/${template}`, outputDir);
+    builder.build(`${sourcePath}/${template}`, outputDir, extension);
   });
 };
 
