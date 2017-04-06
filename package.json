@@ -1,6 +1,6 @@
 {
   "name": "mjml-utils",
-  "version": "0.5.1",
+  "version": "1.0.0",
   "author": "Justin Sisley <justin@vera.com>",
   "description": "The utility belt for MJML developers",
   "repository": "https://github.com/justinsisley/mjml-utils",
@@ -14,19 +14,19 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "inquirer": "^1.1.2",
-    "mjml": "^2.3.1",
-    "nodemailer": "^2.5.0",
-    "watchr": "^2.6.0",
-    "yargs": "^4.8.1"
+    "inquirer": "^3.0.6",
+    "mjml": "^3.3.0",
+    "nodemailer": "^4.0.0",
+    "watchr": "^3.0.1",
+    "yargs": "^7.0.2"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.13.2",
-    "babel-preset-react": "^6.11.1",
-    "eslint": "^3.2.2",
-    "eslint-config-airbnb": "^10.0.0",
-    "eslint-plugin-import": "^1.12.0",
-    "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^6.0.0"
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3"
   }
 }

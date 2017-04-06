@@ -91,7 +91,13 @@ This is the preferred way of using __mjml-utils__, since you can configure it on
 
 ## Module Usage
 
-__mjml-utils__ also has a built in helper method called `inject`. An example of its usage is below:
+__mjml-utils__ also has a few built-in helper functions.
+
+#### inject()
+
+Inject variables into your email templates.
+
+Usage:
 
 ```javascript
 const mjmlUtils = require('mjml-utils');
@@ -121,6 +127,41 @@ The above JavaScript assumes a template called `welcome.html` exists at the spec
 ```
 
 This means your raw MJML template should contain the necessary template strings that you intend to replace with dynamic values.
+
+#### sendmail()
+
+Inject variables, compose, and send an email in one step.
+
+Usage (using nodemailer SES transport):
+
+```javascript
+const mjmlUtils = require('mjml-utils');
+const pathToHtmlEmailTemplate = path.join(__dirname, '../emails/welcome.html');
+
+mjmlUtils.sendmail.config({
+  fromAddress: 'you@domain.com',
+  transporter: nodemailer.createTransport(sesTransport({
+    accessKeyId,
+    secretAccessKey,
+    region,
+  })),
+});
+
+mjmlUtils.sendmail({
+  to: 'someone@domain.com',
+  subject: 'Custom transactional email made easy!',
+  text: 'If the HTML email doesn\'t show up, this text should help you out.',
+  template: pathToHtmlEmailTemplate,
+  // The same data you would pass to #inject()
+  data: { confirmationURL: '...' }
+})
+.then(() => {
+  console.log('Email sent!');
+})
+.catch((error) => {
+  console.warn('mjmlUtils.sendmail error', error);
+});
+```
 
 ## Versioning
 

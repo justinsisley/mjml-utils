@@ -5,13 +5,24 @@ const buildAll = require('./builder').buildAll;
 const watcher = require('./watcher');
 const sender = require('./sender');
 const inject = require('./inject');
-const extension = argv.e || '.html'; 
+const sendmail = require('./sendmail');
 
-if (argv.build) { buildAll(argv.i, argv.o, extension); }
-if (argv.watch) { watcher(argv.i, argv.o, extension); }
-if (argv.send) { sender(argv.o); }
+const extension = argv.e || '.html';
+
+if (argv.build) {
+  buildAll(argv.i, argv.o, extension);
+}
+
+if (argv.watch) {
+  watcher(argv.i, argv.o, extension);
+}
+
+if (argv.send) {
+  sender(argv.o);
+}
 
 // Non-cli utils
 module.exports = {
   inject,
+  sendmail,
 };
