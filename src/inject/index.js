@@ -19,6 +19,6 @@ module.exports = (template, vars = {}) =>
         });
 
         return resolve(finalTemplate);
-      },
+      }
     );
   });
