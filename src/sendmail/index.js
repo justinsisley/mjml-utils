@@ -1,4 +1,5 @@
-const inject = require('../inject');
+const fs = require('fs');
+const mjml2html = require('mjml').mjml2html;
 
 function sendmail({ to, subject, text, template, data }) {
   if (!sendmail.config.fromAddress) {
@@ -10,11 +11,22 @@ function sendmail({ to, subject, text, template, data }) {
   }
 
   return new Promise((resolve, reject) => {
-    inject(template, data)
-    .then((emailTemplate) => {
+    fs.readFile(template, 'utf8', (readFileError, rawTemplate) => {
+      if (readFileError) {
+        reject(readFileError);
+        return;
+      }
+
+      let html = mjml2html(rawTemplate);
+
+      Object.keys(data).forEach((key) => {
+        const regex = new RegExp(`{${key}}`, 'g');
+        html = html.replace(regex, data[key]);
+      });
+
       const mailOptions = {
         from: sendmail.config.fromAddress,
-        html: emailTemplate,
+        html,
         subject,
         text,
         to,
@@ -27,8 +39,7 @@ function sendmail({ to, subject, text, template, data }) {
 
         return resolve();
       });
-    })
-    .catch(reject);
+    });
   });
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "mjml-utils",
-  "version": "1.0.0",
-  "author": "Justin Sisley <justin@vera.com>",
+  "version": "1.1.1",
+  "author": "Justin Sisley",
   "description": "The utility belt for MJML developers",
   "repository": "https://github.com/justinsisley/mjml-utils",
   "license": "MIT",
