@@ -17,7 +17,7 @@ function sendmail({ to, subject, text, template, data }) {
         return;
       }
 
-      let html = mjml2html(rawTemplate);
+      let { html } = mjml2html(rawTemplate);
 
       Object.keys(data).forEach((key) => {
         const regex = new RegExp(`{${key}}`, 'g');
