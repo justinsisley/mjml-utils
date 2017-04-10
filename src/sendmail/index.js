@@ -1,7 +1,7 @@
 const fs = require('fs');
 const mjml2html = require('mjml').mjml2html;
 
-function sendmail({ to, subject, text, template, data }) {
+function sendmail({ to, subject, text, template, data, onError = () => {} }) {
   if (!sendmail.config.fromAddress) {
     throw new Error('mjml-utils sendmail missing fromAddress configuration');
   }
@@ -34,11 +34,11 @@ function sendmail({ to, subject, text, template, data }) {
 
       sendmail.config.transport.sendMail(mailOptions, (error) => {
         if (error) {
-          return reject(error);
+          onError(error);
         }
-
-        return resolve();
       });
+
+      resolve();
     });
   });
 }
