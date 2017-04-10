@@ -6,8 +6,8 @@ function sendmail({ to, subject, text, template, data }) {
     throw new Error('mjml-utils sendmail missing fromAddress configuration');
   }
 
-  if (!sendmail.config.transporter) {
-    throw new Error('mjml-utils sendmail missing transporter configuration');
+  if (!sendmail.config.transport) {
+    throw new Error('mjml-utils sendmail missing transport configuration');
   }
 
   return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ function sendmail({ to, subject, text, template, data }) {
         to,
       };
 
-      sendmail.config.transporter.sendMail(mailOptions, (error) => {
+      sendmail.config.transport.sendMail(mailOptions, (error) => {
         if (error) {
           return reject(error);
         }
@@ -43,9 +43,9 @@ function sendmail({ to, subject, text, template, data }) {
   });
 }
 
-sendmail.config = function config({ fromAddress, transporter }) {
+sendmail.config = function config({ fromAddress, transport }) {
   sendmail.config.fromAddress = fromAddress;
-  sendmail.config.transporter = transporter;
+  sendmail.config.transport = transport;
 };
 
 module.exports = sendmail;
