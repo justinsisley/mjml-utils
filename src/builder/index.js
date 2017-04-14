@@ -27,7 +27,7 @@ builder.build = (filePath, outputDir, extension) => {
   const rendered = mjml2html(data);
   const filename = getTemplateFilename(filePath).replace('.mjml', extension);
 
-  fs.writeFileSync(`${outputPath}/${filename}`, rendered);
+  fs.writeFileSync(`${outputPath}/${filename}`, rendered.html);
 
   const endTime = Date.now();
   const totalTime = endTime - startTime;
@@ -45,7 +45,7 @@ builder.buildAll = (inputDir, outputDir, extension) => {
   const outputPath = path.join(process.cwd(), outputDir);
   mkdir(outputPath);
 
-  templates.forEach(template => {
+  templates.forEach((template) => {
     builder.build(`${sourcePath}/${template}`, outputDir, extension);
   });
 };
