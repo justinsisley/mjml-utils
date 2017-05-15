@@ -1,17 +1,17 @@
 const inquirer = require('inquirer');
 const send = require('./send');
 
-const promptToSend = (transporter, from, to, template) => {
+const promptToSend = (transport, from, to, template) => {
   inquirer.prompt([{
     type: 'confirm',
     name: 'send',
     default: true,
     message: 'Send test email',
   }])
-  .then(sendResponse => {
+  .then((sendResponse) => {
     if (sendResponse.send) {
-      send(template, from, to, transporter, () => {
-        promptToSend(transporter, from, to, template);
+      send(template, from, to, transport, () => {
+        promptToSend(transport, from, to, template);
       });
     }
   });

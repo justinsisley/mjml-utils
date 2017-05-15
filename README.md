@@ -1,8 +1,20 @@
-# mjml-utils
+<p align="center">
+  <img alt="mjml-utils" src="https://image.flaticon.com/icons/svg/134/134963.svg" width="144">
+</p>
 
-[![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/justinsisley/mjml-utils/blob/master/LICENSE.md)
+<h3 align="center">
+  mjml-utils
+</h3>
 
-The utility belt for [MJML](https://mjml.io/) developers
+<p align="center">
+  The utility belt for [MJML](https://mjml.io/) developers
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/mjml-utils"><img src="https://img.shields.io/npm/v/mjml-utils.svg?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/mjml-utils"><img src="https://img.shields.io/npm/dm/mjml-utils.svg?style=flat-square"></a>
+  <a href="https://github.com/justinsisley/mjml-utils/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/licence-MIT-blue.svg"></a>
+</p>
 
 ## Installation
 
@@ -130,17 +142,20 @@ This means your raw MJML template should contain the necessary template strings 
 
 #### sendmail()
 
-Inject variables, compose, and send an email in one step.
+Inject variables, compose, and send an email in one step. Caches templates in memory. Uses [nodemailer](https://github.com/nodemailer/nodemailer) to send email.
 
 Usage (using nodemailer SES transport):
 
 ```javascript
 const mjmlUtils = require('mjml-utils');
 const pathToHtmlEmailTemplate = path.join(__dirname, '../emails/welcome.html');
+const accessKeyId = 'AWS_IAM_ACCESS_KEY_ID';
+const secretAccessKey = 'AWS_IAM_SECRET_ACCESS_KEY';
+const region = 'AWS_SES_REGION';
 
 mjmlUtils.sendmail.config({
   fromAddress: 'you@domain.com',
-  transporter: nodemailer.createTransport(sesTransport({
+  transport: nodemailer.createTransport(sesTransport({
     accessKeyId,
     secretAccessKey,
     region,
@@ -172,3 +187,6 @@ Want to contribute? [Follow these recommendations](https://github.com/justinsisl
 
 ## License
 [MIT License](https://github.com/justinsisley/mjml-utils/blob/master/LICENSE.md) © [Justin Sisley](http://justinsisley.com/)
+
+## Credits
+Icon by [Flaticon](http://www.flaticon.com/)

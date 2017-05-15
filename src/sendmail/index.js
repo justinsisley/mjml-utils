@@ -1,22 +1,19 @@
 const fs = require('fs');
 const mjml2html = require('mjml').mjml2html;
 
+const templateCache = {};
+
 function sendmail({ to, subject, text, template, data, onError = () => {} }) {
   if (!sendmail.config.fromAddress) {
     throw new Error('mjml-utils sendmail missing fromAddress configuration');
   }
 
   if (!sendmail.config.transport) {
-    throw new Error('mjml-utils sendmail missing transport configuration');
+    throw new Error('mjml-utils sendmail missing transport configuration (prior to v2.0.0, this was "transporter")');
   }
 
   return new Promise((resolve, reject) => {
-    fs.readFile(template, 'utf8', (readFileError, rawTemplate) => {
-      if (readFileError) {
-        reject(readFileError);
-        return;
-      }
-
+    function resolver(rawTemplate) {
       let { html } = mjml2html(rawTemplate, { filePath: template });
 
       Object.keys(data).forEach((key) => {
@@ -39,6 +36,24 @@ function sendmail({ to, subject, text, template, data, onError = () => {} }) {
       });
 
       resolve();
+    }
+
+    // Prefer cached template
+    if (templateCache[template]) {
+      resolver(templateCache[template]);
+      return;
+    }
+
+    // No cached template, read from disk
+    fs.readFile(template, 'utf8', (readFileError, rawTemplate) => {
+      if (readFileError) {
+        reject(readFileError);
+        return;
+      }
+
+      templateCache[template] = rawTemplate;
+
+      resolver(rawTemplate);
     });
   });
 }

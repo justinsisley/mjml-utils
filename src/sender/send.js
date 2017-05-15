@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = (template, from, to, transporter, callback) => {
+module.exports = (template, from, to, transport, callback) => {
   const subject = new Date();
   const templatePath = path.join(process.cwd(), `${template}.html`);
   const html = fs.readFileSync(templatePath, 'utf-8');
   const mailConfig = { from, to, subject, html };
 
-  transporter.sendMail(mailConfig, (error, info) => {
+  transport.sendMail(mailConfig, (error, info) => {
     if (error) {
       throw new Error(error);
     }
