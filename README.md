@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  The utility belt for [MJML](https://mjml.io/) developers
+  The utility belt for <a href="https://mjml.io/">MJML</a> developers
 </p>
 
 <p align="center">
