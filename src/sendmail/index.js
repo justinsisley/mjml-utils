@@ -32,6 +32,7 @@ function sendmail({ to, subject, text, template, data, onError = () => {} }) {
       sendmail.config.transport.sendMail(mailOptions, (error) => {
         if (error) {
           onError(error);
+          reject(error);
         }
       });
 
@@ -47,6 +48,7 @@ function sendmail({ to, subject, text, template, data, onError = () => {} }) {
     // No cached template, read from disk
     fs.readFile(template, 'utf8', (readFileError, rawTemplate) => {
       if (readFileError) {
+        onError(readFileError);
         reject(readFileError);
         return;
       }
