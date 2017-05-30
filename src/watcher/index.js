@@ -1,37 +1,20 @@
 const path = require('path');
-const watchr = require('watchr');
+const chokidar = require('chokidar');
 const build = require('../builder').build;
-
-const startedMessage = '\nTemplate watcher started\n';
-const errorMessage = 'Something went wrong';
-
-function onError(err) {
-  console.log(errorMessage, err); // eslint-disable-line
-}
-
-function onWatching(err) {
-  if (err) {
-    console.log(errorMessage, err); // eslint-disable-line
-  } else {
-    console.log(startedMessage); // eslint-disable-line
-  }
-}
-
-function onChange(filePath, outputDir, extension) {
-  build(filePath.replace(/\\/g, '/'), outputDir, extension);
-}
 
 module.exports = (inputDir, outputDir, extension) => {
   const sourceDir = path.join(process.cwd(), inputDir);
+  const watcher = chokidar.watch(sourceDir);
 
-  watchr.watch({
-    paths: [sourceDir],
-    listeners: {
-      error: onError,
-      watching: onWatching,
-      change(type, filePath) {
-        onChange(filePath, outputDir, extension);
-      },
-    },
+  watcher.on('ready', () => {
+    console.log('\nTemplate watcher started\n');
+  });
+
+  watcher.on('error', (error) => {
+    console.log(`Watcher error: ${error}`);
+  });
+
+  watcher.on('change', (filePath) => {
+    build(filePath.replace(/\\/g, '/'), outputDir, extension);
   });
 };
