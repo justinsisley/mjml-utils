@@ -1,6 +1,6 @@
 {
   "name": "mjml-utils",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "Justin Sisley",
   "description": "The utility belt for MJML developers",
   "repository": "https://github.com/justinsisley/mjml-utils",
@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "chokidar": "^1.7.0",
-    "inquirer": "^3.0.6",
-    "mjml": "^3.3.2",
+    "inquirer": "^3.1.0",
+    "mjml": "^3.3.3",
     "nodemailer": "^4.0.1",
-    "yargs": "^8.0.1"
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
