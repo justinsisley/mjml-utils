@@ -12,3 +12,4 @@ ehthumbs.db
 Thumbs.db
 node_modules
 lib
+package-lock.json
