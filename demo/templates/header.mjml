@@ -1,0 +1,14 @@
+<mj-section
+  padding="20px 20px 20px 20px"
+  background-color="#1B1C1D"
+>
+  <mj-column>
+    <mj-text
+      align="left"
+      font-size="14"
+      color="#fff"
+    >
+      Hello from Company!
+    </mj-text>
+  </mj-column>
+</mj-section>

@@ -19,19 +19,25 @@ function mkdir(directory) {
 }
 
 builder.build = (filePath, outputDir, extension) => {
-  const outputPath = path.join(process.cwd(), outputDir);
-  mkdir(outputPath);
-
-  const startTime = Date.now();
-  const data = fs.readFileSync(`${filePath}`, 'utf8');
-  const rendered = mjml2html(data);
   const filename = getTemplateFilename(filePath).replace('.mjml', extension);
 
-  fs.writeFileSync(`${outputPath}/${filename}`, rendered.html);
+  try {
+    const outputPath = path.join(process.cwd(), outputDir);
+    mkdir(outputPath);
 
-  const endTime = Date.now();
-  const totalTime = endTime - startTime;
-  console.log(`Rendered ${filename} in ${totalTime}ms`); // eslint-disable-line
+    const startTime = Date.now();
+    const data = fs.readFileSync(`${filePath}`, 'utf8');
+    const rendered = mjml2html(data);
+
+    fs.writeFileSync(`${outputPath}/${filename}`, rendered.html);
+
+    const endTime = Date.now();
+    const totalTime = endTime - startTime;
+    console.log(`Rendered ${filename} in ${totalTime}ms`); // eslint-disable-line
+  } catch (error) {
+    console.error(`Unable to render ${filename}`);
+    console.error(error.message);
+  }
 };
 
 builder.buildAll = (inputDir, outputDir, extension) => {

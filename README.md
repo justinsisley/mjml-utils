@@ -45,6 +45,8 @@ mju --build -i ./templates -o ./build
 The `--build` command requires input (`-i`) and output (`-o`) arguments. `-i` is the directory in which your raw MJML templates are located, and `-o` is the directory you would like the compiled HTML files written to.
 With the optional extension (`-e`) argument you can specify the output file extension (default: `.html`) to your liking.
 
+> Note: only files with the `.mjml` file extension will be compiled.
+
 ```bash
 mju --build -i ./templates -o ./build -e .handlebars
 ```
@@ -52,6 +54,8 @@ mju --build -i ./templates -o ./build -e .handlebars
 #### --watch
 
 The `mju --watch` command will monitor all MJML templates in a specified directory and compile them to HTML every time they're modified.
+
+> Note: only files with the `.mjml` file extension will be compiled.
 
 ```bash
 mju --watch -i ./templates -o ./build

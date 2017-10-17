@@ -1,0 +1,16 @@
+<mj-section
+  padding="0 20px 0 20px"
+  background-color="#1B1C1D"
+>
+  <mj-column>
+    <mj-text
+      align="left"
+      padding="20px 40px 20px 40px"
+      font-size="14px"
+      line-height="40px"
+      color="#fff"
+    >
+      &copy; 2017 <a href="#" class="link-nostyle">Company</a>
+    </mj-text>
+  </mj-column>
+</mj-section>

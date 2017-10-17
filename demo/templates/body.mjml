@@ -1,0 +1,63 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Lato" href="https://fonts.googleapis.com/css?family=Lato" />
+
+    <mj-attributes>
+      <mj-all font-family="Lato, Helvetica, Arial, sans-serif" />
+    </mj-attributes>
+
+    <mj-style inline="inline">
+      .link-nostyle {
+        color: inherit;
+      }
+    </mj-style>
+  </mj-head>
+
+  <mj-body>
+    <mj-container background-color="#F2F2F2">
+      <mj-section padding="10px 0 20px 0"></mj-section>
+
+      <mj-include path="./header" />
+
+      <mj-section
+        padding="0 20px 0 20px"
+        background-color="#fff"
+      >
+        <mj-column>
+          <mj-text
+            align="center"
+            padding="40px 40px 0 40px"
+            font-size="38px"
+            line-height="40px"
+            color="#1B1C1D"
+          >
+            Thanks for signing up.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section
+        padding="30px 20px 30px 20px"
+        background-color="#fff"
+        vertical-align="middle"
+        background-size="cover"
+        background-repeat="no-repeat"
+      >
+        <mj-column width="100%">
+          <mj-button
+            href="{selfReviewUrl}"
+            align="center"
+            background-color="#3BB748"
+            color="#fff"
+            border-radius="4px"
+            inner-padding="15px 30px"
+          >
+            Magic Login Button
+          </mj-button>
+        </mj-column>
+      </mj-section>
+
+      <mj-include path="./footer" />
+    </mj-container>
+  </mj-body>
+</mjml>
