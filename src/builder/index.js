@@ -19,8 +19,10 @@ function mkdir(directory) {
 }
 
 builder.build = (filePath, outputDir, extension) => {
-  // Silently fail if given filePath is not a file
-  if (!fs.statSync(filePath).isFile()) return;
+  // No-op if filePath is not a file
+  if (!fs.statSync(filePath).isFile()) {
+    return;
+  }
 
   const filename = getTemplateFilename(filePath).replace('.mjml', extension);
 
