@@ -16,6 +16,8 @@
   <a href="https://github.com/justinsisley/mjml-utils/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/licence-MIT-blue.svg"></a>
 </p>
 
+[Changelog](https://github.com/justinsisley/mjml-utils/releases)
+
 ## Installation
 
 Installing globally is the easiest way to get started, since you won't need any project-specific setup:
